@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QDialog, QApplication
+from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
 from mainUI import Ui_Form
 import time
 
@@ -20,11 +20,22 @@ class AppWindow(QDialog):
             changebtn_bool =False
         else:
             labelstring = ticks
-            changebtn_bool =True
+            changebtn_bool =True            
         self.ui.label_show.setText(labelstring)       
         self.ui.progressBar.setValue(int(time.strftime("%S",time.localtime())))
+        global count
+        if count >3:
+            buttonReply = QMessageBox.question(self, 'PyQt5 message', "Do you want Exit?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+            if buttonReply == QMessageBox.Yes:
+                global app
+                app.exit()
+            else:
+                print('No clicked.') 
+        else:
+            count+=1
 app = QApplication(sys.argv)
 changebtn_bool =False
+count=0
 w=AppWindow()
 w.show()
 app.exec_()
