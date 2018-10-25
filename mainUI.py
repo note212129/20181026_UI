@@ -23,6 +23,9 @@ class Ui_Form(object):
         self.progressBar.setGeometry(QtCore.QRect(120, 60, 118, 23))
         self.progressBar.setProperty("value", 24)
         self.progressBar.setObjectName("progressBar")
+        self.lcdNumber = QtWidgets.QLCDNumber(Form)
+        self.lcdNumber.setGeometry(QtCore.QRect(10, 100, 64, 23))
+        self.lcdNumber.setObjectName("lcdNumber")
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

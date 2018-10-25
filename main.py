@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QDialog, QApplication
+from PyQt5.QtWidgets import QDialog, QApplication , QMessageBox
 from mainUI import Ui_Form
 import time
 
@@ -8,13 +8,18 @@ class AppWindow(QDialog):
         super().__init__()
         self.ui=Ui_Form()
         self.ui.setupUi(self)
-
         self.ui.pushButton.clicked.connect(self.pushButton_Click)       
         self.show()
 
     def pushButton_Click(self):
+        
+        NumberCount = self.ui.lcdNumber.value()
+        QMessageBox.about(self,'PyQt',str(NumberCount))
+        NumberCount +=1
+        self.ui.lcdNumber.display(NumberCount)
+
         ticks= time.strftime("%Y-%m-%d %H:%m:%S",time.localtime())
-        global changebtn_bool
+        global changebtn_bool 
         if changebtn_bool:
             labelstring = ticks
             changebtn_bool =False
