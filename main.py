@@ -1,9 +1,5 @@
 import sys
-<<<<<<< HEAD
-from PyQt5.QtWidgets import QDialog, QApplication , QMessageBox
-=======
 from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
->>>>>>> 8b384aee872dd717885dbd56772a43724f7bb1e0
 from mainUI import Ui_Form
 import time
 
