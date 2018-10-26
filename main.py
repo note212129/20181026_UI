@@ -1,15 +1,24 @@
 import sys
 from PyQt5.QtWidgets import QDialog, QApplication, QMessageBox
 from mainUI import Ui_Form
-import time
+import time, threading
 
 class AppWindow(QDialog):
     def __init__(self):
         super().__init__()
         self.ui=Ui_Form()
         self.ui.setupUi(self)
-        self.ui.pushButton.clicked.connect(self.pushButton_Click)       
-        self.show()
+        self.ui.pushButton.clicked.connect(self.pushButton_Click)   
+        timer = threading.Timer(1,self.fun_timer)
+        timer.start()    
+        self.show()   
+
+    def fun_timer(self):
+        ticks= time.strftime("%Y-%m-%d %H:%m:%S",time.localtime())
+        self.ui.lcdNumber.display(ticks)
+        global timer
+        timer = threading.Timer(1,self.fun_timer)
+        timer.start()
 
     def pushButton_Click(self):
         
@@ -44,3 +53,4 @@ count=0
 w=AppWindow()
 w.show()
 app.exec_()
+timer.cancel()
